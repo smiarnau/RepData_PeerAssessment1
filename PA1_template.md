@@ -66,9 +66,12 @@ I have filled  all of the missing values in the dataset assigning mean for that 
 
 ```r
 meanStepsInterval <- totalSteps 
+# I create a new column "stepsMean" to the dataset to store the mean of the 5-minute interval of each row
 names(meanStepsInterval)[names(meanStepsInterval)=="steps"] <- "stepsMean"
 
+# Adding in the new columm "stepsMean" the value of the mean of the 5-minute interval for each row
 totesDades <- merge(dades, meanStepsInterval, by=c("interval"),  sort=F)
+# Replacing the NA value in the column "steps" with the value "stepsMean"
 totesDades$steps[is.na(totesDades$steps)] <- totesDades$stepsMean[is.na(totesDades$steps)]
 ```
 
@@ -95,6 +98,7 @@ I have created a new factor variable in the dataset with two levels: "weekday" a
 Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). 
 
 There is a slight difference between the activity patterns between weekdays and weekdends that is that the starting time to make activity during weekends is a little bit later than in weekdays. The final time is also later during weekends than weekdays.
+We can also observe that during weekends the activity is more distributed in time than during weekdays that is more concentrated in the first morning hours.
 
 
 ```r
